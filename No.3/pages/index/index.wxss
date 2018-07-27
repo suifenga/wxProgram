@@ -1,0 +1,4 @@
+/* pages/index/index.wxss */
+.txt-test{
+  margin-top: 800rpx;
+}

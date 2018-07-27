@@ -1,0 +1,15 @@
+
+{
+  "pages":[
+    "pages/test/test",
+    "pages/idig88/idig88",
+    "pages/index/index"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "第三个demo",
+    "navigationBarTextStyle":"black"
+  }
+}
