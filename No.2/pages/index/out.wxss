@@ -1,0 +1,4 @@
+/* pages/index/out.wxss */
+.txt-left{
+  margin-left: 100rpx;
+}

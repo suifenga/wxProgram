@@ -1,0 +1,9 @@
+<!--index.wxml-->
+
+
+<view class="container">
+  <text id="txt-right">{{globalcss}}</text> 
+  <text style="color:{{color}}">{{motto}}</text>   
+  <text class="txt-test">{{motto}}</text>
+  <text class="txt-left">{{testoutcss}}</text>
+</view>

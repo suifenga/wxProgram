@@ -1,0 +1,11 @@
+/* pages/index/index.wxss */
+@import "out.wxss";
+
+.txt-test{
+  margin-top: 800rpx;
+}
+
+#txt-right{
+  margin-right: 300rpx;
+  color: black;
+}
