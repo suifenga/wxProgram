@@ -1,0 +1,27 @@
+<!listFor.wxml-->
+<view class="container">
+  <view wx:for="{{users}}"  wx:key="userInfoListId1">
+    下标:{{index}},内容:{{item.name}}
+  </view>
+  <!---index别名的方式，item别名的方式-->
+  <view wx:for="{{users}}"wx:for-index="idx" wx:for-item="itemName"  wx:key="userInfoListId2">
+    下标:{{idx}},内容:{{itemName.name}}
+  </view>
+<!---block 是一行下来的，不会自动换行-->
+   <block wx:for="{{users}}"wx:for-index="idx" wx:for-item="itemName"  wx:key="userInfoListId3">
+    下标:{{idx}},内容:{{itemName.name}}
+  </block>
+
+<!--字符串，自动变成数组-->
+  <view wx:for="微信公众号：编程坑太多">
+     {{item}}
+  </view>
+   <!---for循环的嵌套-->
+   <view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i">
+  <view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="j">
+    <view wx:if="{{i <= j}}">
+      {{i}} * {{j}} = {{i * j}}
+    </view>
+  </view>
+</view>
+</view>

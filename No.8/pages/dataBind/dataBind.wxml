@@ -1,0 +1,17 @@
+<!dataBind.wxml-->
+<view class="container" id='item={{id}}'>
+{{msg}}
+<!-- 控制属性(需要在双引号之内) 关键字(需要在双引号之内)-->
+<checkbox checked="{{false}}"> </checkbox>
+<checkbox checked="{{true}}"> </checkbox>
+<checkbox checked="{{flag}}"> </checkbox>
+<checkbox checked="{{unflag}}"> </checkbox>
+<!-- 三目运算符-->
+{{a+b==5?"是5":"不是5"}}
+<!--算数运算-->
+<view> {{a + b}} + {{c}} </view>
+<!---字符串运算-->
+<view> {{msg + hello + "test"}} </view>
+<!---数字和字符串拼接-->
+<view> {{a + b + "test"}} </view>
+</view>
