@@ -1,0 +1,16 @@
+// module.wxs
+var module2 = require("../wxs/module2.wxs")
+var name ="个人网站:idig8.com"
+var age = 18;
+
+var method = function(obj){
+  console.log(module2.name);
+  console.log(module2.age);
+  return obj;
+}
+
+module.exports ={
+  name :name,
+  age : age,
+  method :method
+}

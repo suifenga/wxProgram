@@ -1,0 +1,8 @@
+
+<import src="../templateIs/templateIs.wxml"/>
+<view class="container">
+
+  <template is="mytemp" data="{{...person,msg,name:'limng',age:'永远18岁'}}" />
+  <template is="mytemp" data="{{...person,msg,name:'limng',age:'永远18岁'}}" />
+  <template is="mytemp" data="{{...person,msg,name:'limng',age:'永远18岁'}}" />
+</view>

@@ -1,0 +1,14 @@
+<!templateIs.wxml-->
+<template name="mytemp">
+  <view>姓名：{{name}}</view>
+  <view>年龄：{{age}}</view>
+  <view>地址：{{address}}</view>
+  <view>备注：{{remark}}</view>
+  <view>msg：{{msg}}</view>
+</template>
+
+<view class="container">
+  <template is="mytemp" data="{{...person,msg,name:'limng',age:'永远18岁'}}" />
+  <template is="mytemp" data="{{...person,msg,name:'limng',age:'永远18岁'}}" />
+  <template is="mytemp" data="{{...person,msg,name:'limng',age:'永远18岁'}}" />
+</view>

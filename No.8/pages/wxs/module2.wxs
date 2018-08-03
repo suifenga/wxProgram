@@ -1,0 +1,13 @@
+// module.wxs
+var name ="公众号：编程坑太多"
+var age = 28;
+
+var method = function(obj){
+  return obj;
+}
+
+module.exports ={
+  name :name,
+  age : age,
+  method :method
+}

@@ -1,5 +1,8 @@
 {
   "pages":[
-    "pages/ifElse/ifElse"
+    "pages/isInclude/isInclude",
+    "pages/templateImport/templateImport",
+    "pages/wxs/wxs",
+    "pages/templateIs/templateIs"
   ]
 }

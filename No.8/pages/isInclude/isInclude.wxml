@@ -1,0 +1,7 @@
+
+
+<include src="head.wxml"/>
+<include src="body.wxml"/>
+<view class="container">
+foot
+</view>

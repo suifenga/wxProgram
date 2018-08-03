@@ -1,7 +1,7 @@
 <!ifElse.wxml-->
 <view class="container">
   <view wx:if="{{age<18}}">未成年</view>
-  <view wx:elif="{{age>=18 &&age<=30}}">已成年</view>
+  <view wx:elif="{{age>=18 &&age<=30}}">已成年,个人网站：idig8.com</view>
   <view wx:elif="{{age>30 &&age<=50}}">壮年,一起关注公众号：编程坑太多给我来点赞</view>
   <view wx:else>已经老了</view>
 
