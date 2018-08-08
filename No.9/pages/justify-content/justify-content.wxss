@@ -1,0 +1,47 @@
+.container-flex-start{
+  display: flex;
+  justify-content: flex-start;
+}
+.container-flex-end{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-center{
+  display: flex;
+  justify-content: flex-center;
+}
+
+.container-space-around{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.container-space-between{
+  display: flex;
+  justify-content: space-between;
+}
+
+.size{
+  width: 50rpx;
+  height: 150rpx;
+}
+.a {
+  background: red;
+}
+.b {
+  background: yellow;
+}
+
+.c {
+  background: blue;
+}
+
+.d {
+  background: green;
+}
+
+.e {
+  background: gold;
+}

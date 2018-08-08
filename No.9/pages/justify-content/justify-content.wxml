@@ -1,0 +1,60 @@
+<!justify-content.wxml-->
+<view class="container-flex-start">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>
+
+<view style='width:100%;height:100rpx;'>
+欢迎访问我的个人网站：idig8.com
+公众号：编程坑太多
+</view>
+
+<view class="container-flex-end">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>
+
+<view style='width:100%;height:100rpx;'>
+欢迎访问我的个人网站：idig8.com
+公众号：编程坑太多
+</view>
+
+<view class="container-center">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>
+
+<view style='width:100%;height:100rpx;'>
+欢迎访问我的个人网站：idig8.com
+公众号：编程坑太多
+</view>
+
+<view class="container-space-around">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>
+
+<view style='width:100%;height:100rpx;'>
+欢迎访问我的个人网站：idig8.com
+公众号：编程坑太多
+</view>
+
+<view class="container-space-between">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>

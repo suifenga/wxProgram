@@ -1,0 +1,42 @@
+.container-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.container-row-reverse{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.container-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.container-column-reverse{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.size{
+  width: 200rpx;
+  height: 150rpx;
+}
+.a {
+  background: red;
+}
+.b {
+  background: yellow;
+}
+
+.c {
+  background: blue;
+}
+
+.d {
+  background: green;
+}
+
+.e {
+  background: gold;
+}

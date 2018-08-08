@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/order-flex/order-flex",
+    "pages/justify-content/justify-content",
+    "pages/flex-wrap/flex-wrap",
+    "pages/flex-direction/flex-direction"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "flex演示",
+    "navigationBarTextStyle":"black"
+  }
+}

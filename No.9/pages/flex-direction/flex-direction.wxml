@@ -1,0 +1,44 @@
+<!--flex-direction.wxml-->
+<view class="container-row">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>
+
+<view style='width:100%;height:100rpx;'>
+欢迎访问我的个人网站：idig8.com
+公众号：编程坑太多
+</view>
+
+<view class="container-row-reverse">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>
+
+<view style='width:100%;height:20rpx;'>
+</view>
+
+<view class="container-column">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>
+
+
+<view style='width:100%;height:20rpx;'>
+</view>
+
+<view class="container-column-reverse">
+  <view class='size a'>a</view>
+  <view class='size b'>b</view>
+  <view class='size c'>c</view>
+  <view class='size d'>d</view>
+  <view class='size e'>e</view>
+</view>

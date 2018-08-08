@@ -1,0 +1,36 @@
+.container{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.size{
+  height: 150rpx;
+}
+.a {
+  background: red;
+  order:5;
+  flex:4;
+}
+.b {
+  background: yellow;
+  order:1;
+  flex:1;
+}
+
+.c {
+  background: blue;
+  order:3;
+  flex:2;
+}
+
+.d {
+  background: green;
+  order:32;
+  flex:3;
+}
+
+.e {
+  background: gold;
+  order:4;
+  flex:2;
+}

@@ -1,0 +1,37 @@
+.container-nowrap{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.container-wrap{
+    display: flex;
+  flex-wrap: wrap;
+}
+
+.container-wrap-reverse{
+    display: flex;
+  flex-wrap: wrap-reverse;
+}
+
+
+.size{
+  width: 200rpx;
+  height: 150rpx;
+}
+.a {
+  background: red;
+}
+.b {
+  background: yellow;
+}
+
+.c {
+  background: blue;
+}
+
+.d {
+  background: green;
+}
+
+.e {
+  background: gold;
+}
