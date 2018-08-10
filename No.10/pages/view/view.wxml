@@ -1,0 +1,5 @@
+<!--view.wxml-->
+
+<!--手机按住1秒变成灰色，手指松开后2秒变回原来的红色-->
+<view class="container" hover-class='hover-class' hover-start-time="10000" hover-stay-time="2000">
+</view>

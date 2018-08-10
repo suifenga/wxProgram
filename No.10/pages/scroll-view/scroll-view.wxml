@@ -1,0 +1,27 @@
+<!--scroll-view.wxml-->
+<scroll-view class="container-wrapp" style='height:300rpx' scroll-y='true'
+bindscrolltoupper="scrolltoupper"
+bindscrolltolower="scrolltolower"
+upper-threshold="0"
+lower-threshold="0"
+scroll-top="100"
+enable-back-to-top="true"
+scroll-with-animation="true"
+bindscroll="scroll"
+scroll-into-view="b"
+>
+  <view id="a" class='sizeY a'>a</view>
+  <view id="b" class='sizeY b'>b</view>
+  <view id="c" class='sizeY c'>c</view>
+  <view id="d" class='sizeY d'>d</view>
+  <view id="e" class='sizeY e'>e</view>
+</scroll-view>
+
+
+<scroll-view class="container-nowrap" style='margin-top:250rpx' scroll-x='true' scroll-left="200">
+  <view id="a" class='sizeX a'>a</view>
+  <view id="b" class='sizeX b'>b</view>
+  <view id="c" class='sizeX c'>c</view>
+  <view id="d" class='sizeX d'>d</view>
+  <view id="e" class='sizeX e'>e</view>
+</scroll-view>

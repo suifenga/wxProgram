@@ -1,0 +1,8 @@
+<!--movable.wxml-->
+
+<movable-area class="container">
+  <movable-view class='size' direction='all' inertia='true' out-of-bounds='true' x='50' y='50'
+  damping='100' friction='100' bindchange='onchange' bindscale='onscale' scale="true">
+  </movable-view>
+</movable-area>
+

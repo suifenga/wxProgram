@@ -1,0 +1,38 @@
+.container-wrap{
+  display: flex;
+  flex-wrap:wrap;
+}
+
+.container-nowrap{
+  display:flex;
+  white-space: nowrap;
+}
+
+.sizeY{
+  width: 100%;
+  height: 150rpx;
+}
+
+.sizeX{
+  width: 250rpx;
+  height: 150px;
+  display: inline-block;
+}
+.a {
+  background: red;
+}
+.b {
+  background: yellow;
+}
+
+.c {
+  background: blue;
+}
+
+.d {
+  background: green;
+}
+
+.e {
+  background: gold;
+}

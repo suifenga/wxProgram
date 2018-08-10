@@ -1,0 +1,11 @@
+.container{
+  background-color: red;
+  width: 100%;
+  height: 650rpx;
+}
+
+.size{
+  background-color: yellow;
+  width: 300rpx;
+  height: 250rpx;
+}
