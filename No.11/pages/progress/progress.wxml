@@ -1,0 +1,6 @@
+<!--progress.wxml-->
+<view>
+  <progress percent="70" show-info="{{true}}" stroke-width="20" color="red" active="{{true}}"></progress>
+    <progress percent="{{mypercent}}" show-info="{{true}}" stroke-width="20" color="red" active="{{true}}" active-mode='forwards'></progress>
+  <view bindtap='addpercent' >点击增加进度条百分比</view>
+</view>

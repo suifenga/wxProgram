@@ -1,0 +1,8 @@
+{
+  "pages":[
+    "pages/progress/progress",
+    "pages/rich-text/rich-text",
+    "pages/text/text",
+    "pages/icon/icon"
+  ]
+}

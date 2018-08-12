@@ -1,0 +1,12 @@
+<!--icon.wxml-->
+<view class="container">
+<icon type='success' color='red' size='55'></icon>
+<icon type='success_no_circle' size='55'></icon>
+<icon type='info' size='55'></icon>
+<icon type='warn' size='55'></icon>
+<icon type='waiting' size='55'></icon>
+<icon type='cancel' size='55'></icon>
+<icon type='download' size='55'></icon>
+<icon type='search' size='55'></icon>
+<icon type='clear' size='55'></icon>
+</view>

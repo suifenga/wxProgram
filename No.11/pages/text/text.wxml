@@ -1,0 +1,21 @@
+<!--text.wxml-->
+<view>
+<text selectable='{{true}}'>欢迎关注：编程坑太多</text>
+</view>
+
+<view>
+<text>欢迎关注：编程坑太多</text>
+</view>
+
+
+<view>
+<text space='{{true}}' decode="true">个人博客：&emsp;&emsp;&emsp;&emsp;idig8.com</text>
+</view>
+
+<view>
+<text space='{{false}}'>个人博客：&emsp;&emsp;&emsp;&emsp;idig8.com</text>
+</view>
+
+<view>
+<text decode="true">个人博客：\t\nidig8.com</text>
+</view>

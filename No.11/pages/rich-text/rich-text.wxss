@@ -1,0 +1,4 @@
+/**icon.wxss**/
+.s_lg_img_gold_show{
+  width:600rpx;
+}

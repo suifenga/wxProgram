@@ -1,0 +1,5 @@
+<!--rich-text.wxml-->
+<view>
+  <rich-text nodes="{{mycontentStr}}"> </rich-text>
+  <rich-text nodes="{{mycontentArray}}"> </rich-text>
+</view>
