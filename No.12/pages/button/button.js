@@ -1,0 +1,4 @@
+//button.js
+
+Page({
+})

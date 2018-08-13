@@ -1,0 +1,25 @@
+<checkbox-group>
+  <checkbox value='中国'/>中国
+  <checkbox value='美国' disabled='{{true}}'/>美国
+  <checkbox value='俄国' checked='{{true}}' color='red'/>俄国
+</checkbox-group>
+
+<checkbox-group style="margin-top:50px;">
+ <view wx:for='{{array}}'>
+    <checkbox  value='{{item.value}}' disabled='{{item.disable}}' color='{{item.color}}' checked='{{item.checked}}'>{{item.name}}</checkbox>
+ </view>
+</checkbox-group>
+
+<checkbox-group style="margin-top:50px;">
+ <label wx:for='{{array}}'>
+    <checkbox  value='{{item.value}}' disabled='{{item.disable}}' color='{{item.color}}' checked='{{item.checked}}'>{{item.name}}</checkbox>
+ </label>
+</checkbox-group>
+
+<checkbox-group style="margin-top:50px;">
+ <label wx:for='{{array}}'>
+    <checkbox id='{{item.id}}' value='{{item.value}}' disabled='{{item.disable}}' color='{{item.color}}' checked='{{item.checked}}'>{{item.name}}</checkbox>
+ </label>
+</checkbox-group>
+
+<label for='1003'>俄国点它可以选中</label>
