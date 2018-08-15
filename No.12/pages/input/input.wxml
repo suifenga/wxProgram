@@ -1,0 +1,18 @@
+<input value="个人网页：idig8.com"></input>
+<input value="微信公众号：编程坑太多"></input>
+<input value="1234567890" type='number'></input>
+<input value="410202198511112018" type='idcard'></input>
+<input value="5.36" type='digit'></input>
+<input value="password" password='{{true}}'></input>
+输入账号：<input placeholder='输入框为空时占位符' ></input>
+输入账号：<input placeholder='输入框为空时占位符' placeholder-class='placeholderStyle'></input>
+输入账号：<input placeholder='输入框为空时占位符' placeholder-style='color:yellow;'></input>
+长度限制：<input placeholder='最多5位' maxlength='5'></input>
+<!-- 手机端调试-进入获取焦点：<input placeholder='最多5位' focus='{{true}}' cursor='2'></input> -->
+手机端调试-点击键盘右下角按钮时是否保持键盘不收起：<input placeholder='点击键盘右下角按钮时是否保持键盘不收起'  confirm-hold='{{true}}'></input>
+
+手机端调试-右下角文字：<input  placeholder='键盘右下角按钮为发送' confirm-type='send'></input>
+
+手机端调试-选中状态：<input  value='123456789' focus='{{true}}' selection-start='1' selection-end='3'></input>
+手机端调试-键盘弹起时，是否自动上推页面：<input  placeholder='点击试试键盘弹不弹' adjust-position='{{false}}'></input>
+input事件：<input bindinput='inputEvent' bindfocus='focusEvent' bindblur='blurEvent' bindconfirm='confirmEvent'></input>

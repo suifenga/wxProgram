@@ -1,5 +1,7 @@
 {
   "pages":[
+      "pages/input/input",
+      "pages/form/form",
       "pages/checkbox/checkbox",
       "pages/button/button"
   ]
