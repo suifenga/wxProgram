@@ -1,5 +1,7 @@
 {
   "pages":[
+      "pages/picker-view/picker-view",
+      "pages/picker/picker",
       "pages/input/input",
       "pages/form/form",
       "pages/checkbox/checkbox",

@@ -1,0 +1,38 @@
+<view style='color:red'>单列选择器</view>
+
+<picker mode="selector" range="{{array}}">
+测试选择器--数组
+</picker>
+<picker mode="selector" range="{{arrayObject}}" range-key='name' bindchange='mychange' bindcancel='mycancel'>
+测试选择器--对象
+</picker>
+
+
+<picker mode="selector" range="{{arrayObject}}" range-key='name' bindchange='mychangeResult'>
+{{myTitle}}
+</picker>
+
+<view style='color:red;margin-top:100rpx;'>多列选择器</view>
+
+<picker mode="multiSelector" range="{{arraymult}}">
+测试选择器--数组
+</picker>
+<picker mode="multiSelector" range="{{arraymultObject}}" range-key='name' bindcancel='mycancel' bindcolumnchange='mychangemulticolumn' bindchange='mychangemulti'>
+测试选择器--对象
+</picker>
+
+<view style='margin-top:100rpx;'>时间选择器</view>
+<picker mode="time" start="08:08" end="22:30" bindchange="changeTime">
+    <view>{{timeLable}}</view>
+</picker>
+
+<view style='margin-top:100rpx;'>日期选择器</view>
+<picker mode="date" start="2018-03-01" end="2018-06-25" bindchange="changeDate" fields="month">
+    <view>{{dateLable}}</view>
+</picker>
+
+<view style='margin-top:100rpx;'>城市选择器</view>
+<picker mode="region" bindchange="changeCity" custom-item="{{customItem}}" value="{{region}}">
+    <view>{{cityLable}}</view> 
+    <!-- 当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}} -->
+</picker>
