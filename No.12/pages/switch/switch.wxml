@@ -1,0 +1,8 @@
+<!--pages/switch/switch.wxml-->
+<switch checked='{{true}}' type='checkbox'>这是一个开关选择器</switch>
+<switch checked='{{true}}' color="red" bindchange='changeme'>开关</switch>
+
+<view style='background-color:{{color}};width:100%;height:500rpx'>
+个人网站：idig8.com
+公众号：编程坑太多
+</view>

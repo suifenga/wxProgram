@@ -1,0 +1,10 @@
+<!--pages/slider/slider.wxml-->
+<slider min="10" max="90" show-value='{{true}}' activeColor='red' backgroundColor='blue' block-color='green' bindchanging='iamchanging'></slider>
+
+<view style='background-color:green;width:100%;height:{{myheight}}'>
+个人网站：idig8.com
+公众号：编程坑太多
+</view>
+
+
+<slider min="10" max="90" show-value='{{true}}' activeColor='red' backgroundColor='blue' block-color='green' bindchange='iamchange'></slider>

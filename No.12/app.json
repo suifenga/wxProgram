@@ -1,5 +1,9 @@
 {
   "pages":[
+      "pages/myform/myform",
+      "pages/switch/switch",
+      "pages/slider/slider",
+      "pages/radio/radio",
       "pages/picker-view/picker-view",
       "pages/picker/picker",
       "pages/input/input",

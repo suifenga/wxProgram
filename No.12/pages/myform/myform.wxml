@@ -1,0 +1,24 @@
+<form bindsubmit='formSubmit' bindreset='formReset'>
+    <checkbox-group name="aa" bindchange="changed">
+        <checkbox value='v中国'/>中国
+        <checkbox value='v美国' disabled='{{true}}'/>美国
+        <checkbox value='v俄国' checked='{{true}}' color='red'/>俄国
+    </checkbox-group>
+
+    <checkbox-group name="bb">
+        <label wx:for="{{array}}">
+            <checkbox id="{{item.id}}" value='{{item.name}}' checked='{{item.checked}}' color='{{item.color}}' disabled="{{item.disabled}}"/>{{item.value}}
+        </label>
+    </checkbox-group>
+
+
+    <input value='{{inputValue}}' disabled='{{true}}'></input>
+    <input password='{{true}}' value='{{inputValue}}'></input>
+    <input placeholder='请输入用户名' placeholder-style='color:red' focus="{{getFocus}}"></input>
+    <input placeholder='请输入密码' placeholder-class='placeholder' maxlength='10'></input>
+
+    <button form-type='submit'>提交</button>
+    <button form-type='reset'>重置</button>
+
+    <button bindtap='getFocus'>获得焦点</button>
+</form>

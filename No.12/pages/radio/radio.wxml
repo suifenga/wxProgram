@@ -1,0 +1,16 @@
+<!--pages/radio/radio.wxml-->
+<radio-group bindchange="bindbindChangeRadio">
+  <radio value="个人网站:idig8.com">个人网站:idig8.com</radio>
+  <radio value='公众号:编程坑太多' color='red'>公众号:编程坑太多</radio>
+  <radio value='简书:IT人故事会' disabled='{{true}}'>简书:IT人故事会</radio>
+</radio-group>
+
+<view>选择是{{checkRadio}}</view>
+
+<view style='margin-top:50rpx'>
+  <radio-group>
+    <block wx:for="{{array}}">
+        <radio  value='{{item.value}}' disabled='{{item.disable}}' color='{{item.color}}' checked='{{item.checked}}'>{{item.name}}</radio>
+    </block>
+  </radio-group>
+</view>
