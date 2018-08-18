@@ -1,0 +1,7 @@
+<!--pages/page3/page3.wxml-->
+<text>pages/page3/page3.wxml</text>
+
+
+<navigator open-type='navigateBack'>返回上一级</navigator>
+
+<navigator open-type='navigateBack' delta='2'>返回上两级</navigator>

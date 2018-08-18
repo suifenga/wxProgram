@@ -1,0 +1,6 @@
+<!--pages/page2/page2.wxml-->
+<text>pages/page2/page2.wxml</text>
+
+<navigator url='../page3/page3'>跳转到第三页</navigator>
+
+<navigator open-type='navigateBack'>redirect类型点击无效，返回上一级</navigator>

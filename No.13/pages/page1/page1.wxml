@@ -1,0 +1,10 @@
+<!--pages/page1/page1.wxml-->
+<text>pages/page1/page1.wxml</text>
+
+<navigator url='../page2/page2'>跳转到第二页</navigator>
+<navigator url='../page3/page3'>跳转到第三页</navigator>
+
+
+<navigator url='../page2/page2' open-type='redirect'>redirect方式跳转到第二页</navigator>
+
+<navigator url='../page2/page2?name1=个人主页：idig.com&name2=公众号:编程坑太多'> 传递参数的跳转到第二页</navigator>
