@@ -1,0 +1,11 @@
+<!--pages/image/image.wxml-->
+<image src='https://developers.weixin.qq.com/miniprogram/dev/image/cat/0.jpg?t=18081622'></image>
+
+
+<image src='{{imageSrc}}'></image>
+
+<image src='{{imageSrc}}' style='width:200px;height:200pxx'></image>
+
+<block wx:for="{{array}}">
+  <image src='{{imageSrc}}' mode='{{item.mode}}' style='width:250px;height:250x' lazy-load='{{true}}' bindload='load'></image>
+</block>
