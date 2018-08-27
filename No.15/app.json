@@ -1,0 +1,11 @@
+{
+  "pages":[
+    "pages/userRegister/userRegister"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小程序视频",
+    "navigationBarTextStyle":"black"
+  }
+}
