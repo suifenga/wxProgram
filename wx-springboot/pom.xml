@@ -38,5 +38,6 @@
 		<module>wx-springboot-mapper</module>
 		<module>wx-springboot-service</module>
 		<module>wx-springboot-api</module>
+		<module>mybatis-generatorConfig</module>
 	</modules>
 </project>
