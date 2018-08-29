@@ -14,8 +14,8 @@
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://47.94.162.28:3306/test"
-                        userId="XXXXX"
-                        password="XXXXX">
+                        userId="xxxx"
+                        password="xxxxx">
         </jdbcConnection>
 
         <!-- 对应生成的pojo所在包 -->
