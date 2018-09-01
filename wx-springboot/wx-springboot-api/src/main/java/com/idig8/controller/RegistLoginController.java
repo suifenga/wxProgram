@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.util.StringUtil;
 import com.idig8.pojo.Users;
 import com.idig8.service.UserService;
 import com.idig8.utils.JSONResult;
@@ -52,5 +51,25 @@ public class RegistLoginController {
 		//防止密码返回被获取到
 		user.setPassword("");
 		return JSONResult.ok(user);
+	}
+	
+	@ApiOperation(value="用户登录",notes="用户登录的接口")
+	@PostMapping("/login")
+	public JSONResult login(@RequestBody Users user) {
+		//1.判断用户名和密码不能为空
+		if(StringUtils.isBlank(user.getUsername())||StringUtils.isBlank(user.getPassword())) {
+			return JSONResult.errorMsg("用户名或密码不能为空");
+		}
+		
+		//2.判断用户名是否存在
+		Users userObject = userService.queryUserIsExist(user);
+		
+		if(userObject==null){
+			return JSONResult.errorMsg("用户名或密码不存在！");
+		}
+		
+		//防止密码返回被获取到
+		user.setPassword("");
+		return JSONResult.ok(userObject);
 	}
 }

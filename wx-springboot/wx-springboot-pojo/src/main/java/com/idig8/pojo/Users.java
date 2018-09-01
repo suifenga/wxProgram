@@ -26,6 +26,7 @@ public class Users {
     /** 
      * 我的头像，如果没有默认给一张
      */
+    @ApiModelProperty(hidden=true)
     @Column(name = "face_image")
     private String faceImage;
 

@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/userLogin/userLogin",
     "pages/userRegister/userRegister"
   ],
   "window":{

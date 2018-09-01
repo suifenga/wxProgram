@@ -18,4 +18,12 @@ public interface UserService {
 	 */
 	public void saveUser(Users user);
 	
+	/**
+	 * 查询用户对象
+	 * @param username
+	 * @return
+	 */
+	public Users queryUserIsExist(Users user);
+	
+	
 }
