@@ -12,12 +12,18 @@ import com.idig8.service.UserService;
 import com.idig8.utils.JSONResult;
 import com.idig8.utils.MD5Utils;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
+@Api(value="用户注册登录的接口",tags={"注册和登录的controller"})
 public class RegistLoginController {
 	
 	@Autowired
 	private UserService userService;
 	
+	
+	@ApiOperation(value="用户注册",notes="用户注册的接口")
 	@PostMapping("/regist")
 	public JSONResult regist(@RequestBody Users user) {
 		//1.判断用户名和密码不能为空
@@ -43,8 +49,8 @@ public class RegistLoginController {
 			return JSONResult.errorMsg("用户名或已经存在，请更换在试试！");
 		}
 		
-		
-		
-		return JSONResult.ok();
+		//防止密码返回被获取到
+		user.setPassword("");
+		return JSONResult.ok(user);
 	}
 }

@@ -7,5 +7,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "小程序视频",
     "navigationBarTextStyle":"black"
-  }
+  },
+  "debug":true
 }

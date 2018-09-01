@@ -2,12 +2,14 @@ package com.idig8.service;
 
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.idig8.mapper.UsersMapper;
 import com.idig8.pojo.Users;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
