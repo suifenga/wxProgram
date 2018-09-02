@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/userLogin/userLogin",
-    "pages/userRegister/userRegister"
+    "pages/userRegister/userRegister",
+    "pages/userLogin/userLogin"
   ],
   "window":{
     "backgroundTextStyle":"light",

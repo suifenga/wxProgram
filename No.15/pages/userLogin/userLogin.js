@@ -18,6 +18,9 @@ Page({
         duration: 3000
       })
     } else {
+      wx.showLoading({
+        title: '正在加载中。。。'
+      });
       wx.request({
         url: app.serverUrl + "/login",
         method: "POST",
@@ -31,6 +34,7 @@ Page({
         success: function (res) {
           console.log(res.data);
           var status = res.data.status;
+          wx.hideLoading();
           if (status == 200) {
             wx.showToast({
               title: "用户登陆成功~！",
@@ -49,7 +53,9 @@ Page({
       })
     }
   },
-  goLoginPage: function (e) {
-    console.log("跳转到注册");
+  goRegisterPage: function (e) {
+    wx.redirectTo({
+      url: '../userRegister/userRegister',
+    })
   }
 })
