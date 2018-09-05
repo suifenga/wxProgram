@@ -1,12 +1,16 @@
 package com.idig8.controller;
 
+import java.util.UUID;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.idig8.pojo.Users;
+import com.idig8.pojo.vo.UsersVO;
 import com.idig8.service.UserService;
 import com.idig8.utils.JSONResult;
 import com.idig8.utils.MD5Utils;
@@ -16,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api(value="用户注册登录的接口",tags={"注册和登录的controller"})
-public class RegistLoginController {
+public class RegistLoginController extends BasicController{
 	
 	@Autowired
 	private UserService userService;
@@ -48,9 +52,9 @@ public class RegistLoginController {
 			return JSONResult.errorMsg("用户名或已经存在，请更换在试试！");
 		}
 		
-		//防止密码返回被获取到
-		user.setPassword("");
-		return JSONResult.ok(user);
+		UsersVO userVO = setUserRedisSessionToken(user);
+		
+		return JSONResult.ok(userVO);
 	}
 	
 	@ApiOperation(value="用户登录",notes="用户登录的接口")
@@ -68,8 +72,17 @@ public class RegistLoginController {
 			return JSONResult.errorMsg("用户名或密码不存在！");
 		}
 		
-		//防止密码返回被获取到
-		user.setPassword("");
-		return JSONResult.ok(userObject);
+		UsersVO userVO = setUserRedisSessionToken(userObject);
+		return JSONResult.ok(userVO);
+	}
+	
+	public UsersVO setUserRedisSessionToken(Users userModel) {
+		String uniqueToken = UUID.randomUUID().toString();
+		redis.set(USERS_REDIS_SESSION + ":" + userModel.getId(), uniqueToken, USERS_REDIS_SESSION_TL);
+		
+		UsersVO userVO = new UsersVO();
+		BeanUtils.copyProperties(userModel, userVO);
+		userVO.setUserToken(uniqueToken);
+		return userVO;
 	}
 }
