@@ -16,6 +16,7 @@ import com.idig8.utils.JSONResult;
 import com.idig8.utils.MD5Utils;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -74,6 +75,19 @@ public class RegistLoginController extends BasicController{
 		
 		UsersVO userVO = setUserRedisSessionToken(userObject);
 		return JSONResult.ok(userVO);
+	}
+	
+	@ApiOperation(value="用户注销",notes="用户注销的接口")
+	@ApiImplicitParam(name="userId",value="用户id",required=true,dataType="String",paramType="query")
+	@PostMapping("/logout")
+	public JSONResult logout(String userId) {
+		
+		try {
+			redis.del(USERS_REDIS_SESSION + ":" + userId);
+		} catch (Exception e) {
+			return JSONResult.errorMsg("注销失败"+e.getMessage());
+		}
+		return JSONResult.ok();
 	}
 	
 	public UsersVO setUserRedisSessionToken(Users userModel) {

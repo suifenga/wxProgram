@@ -41,7 +41,11 @@ Page({
               icon: 'none',
               duration: 3000
             })
-            app.userinfo = res.data.data;
+            app.userInfo = res.data.data;
+            wx.redirectTo({
+              url: '../mine/mine',
+            })
+
           } else if (status == 500) {
             wx.showToast({
               title: res.data.msg,

@@ -1,4 +1,5 @@
 // pages/mine/mine.js
+const app = getApp()
 Page({
 
   /**
@@ -10,6 +11,42 @@ Page({
     fansCounts: 0,
     followCounts: 0,
     receiveLikeCounts: 0,
+  },
+  logout:function(e){
+    var user = app.userInfo;
+    wx.showLoading({
+      title: '正在注销中。。。'
+    });
+    wx.request({
+      url: app.serverUrl + "/logout?userId="+user.id,
+      method: "POST",
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data);
+        var status = res.data.status;
+        wx.hideLoading();
+        if (status == 200) {
+          wx.showToast({
+            title: "用户注销成功~！",
+            icon: 'none',
+            duration: 3000
+          })
+          app.userInfo = null;
+          wx.redirectTo({
+            url: '../userRegister/userRegister',
+          })
+
+        } else if (status == 500) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      }
+    })
   },
 
   /**
