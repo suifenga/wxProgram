@@ -1,0 +1,11 @@
+# eclipse #
+.settings
+.project
+.classpath
+.log
+.prefs
+.gitignore
+
+# maven #
+target
+logs
