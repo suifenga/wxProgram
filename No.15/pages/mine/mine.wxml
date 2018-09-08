@@ -1,7 +1,7 @@
 <view>
 
   <view class='container'>
-      <image src="{{faceUrl}}" class="face"></image>
+      <image src="{{faceUrl}}" class="face" bindtap='uploadFace'></image>
     <label class='nickname'>{{nickname}}</label>
       <button size='mini' class='primary' bindtap='uploadVideo'> 上传作品</button>
       <button size='mini' type='' class='logout' bindtap='logout'>注销</button>
