@@ -56,6 +56,7 @@ Page({
    */
   uploadFace:function(e){
     var user = app.userInfo;
+    var me = this;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -65,24 +66,34 @@ Page({
         var tempFilePaths = res.tempFilePaths
         if (tempFilePaths.length>0){
           console.log(tempFilePaths[0]);
-
-          wx.chooseImage({
-            success: function (res) {
-              var tempFilePaths = res.tempFilePaths
               wx.uploadFile({
                 url: app.serverUrl + "/user/uploadFace?userId=" + user.id, //仅为示例，非真实的接口地址
                 filePath: tempFilePaths[0],
                 name: 'file',
-                formData: {
-                  'user': 'test'
-                },
                 success: function (res) {
-                  var data = res.data
-                  //do something
+                  var data = JSON.parse(res.data);
+                  console.log(data);
+                   wx.hideLoading();
+                  if (data.status == 200) {
+                    wx.showToast({
+                      title: "用户上传成功~！",
+                      icon: 'none',
+                      duration: 3000
+                    })
+                    me.setData({
+                      faceUrl: app.serverUrl+data.data
+                    })
+                  
+
+                  } else if (data.status == 500) {
+                    wx.showToast({
+                      title: data.msg,
+                      icon: 'none',
+                      duration: 3000
+                    })
+                  }
                 }
               })
-            }
-          })
         }
        
       }

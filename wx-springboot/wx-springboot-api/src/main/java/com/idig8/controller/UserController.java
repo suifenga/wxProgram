@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.idig8.pojo.Users;
 import com.idig8.service.UserService;
 import com.idig8.utils.JSONResult;
 import com.idig8.utils.file.FileUtil;
@@ -45,15 +46,21 @@ public class UserController extends BasicController{
 		// 文件保存的命名空间
 		String fileName = file.getOriginalFilename();
 		// 保存到数据库中的相对路径
+		String path = "";
 		 try {
-	            FileUtil.uploadFile(file.getBytes(), fileSpace, fileName);
+			 path = FileUtil.uploadFile(file.getBytes(), fileSpace, fileName);
 	        } catch (Exception e) {
 	            e.getStackTrace();
 	        	return JSONResult.errorMsg(e.getMessage());
 	        }
+		 
+		 Users user = new Users();
+		 user.setId(userId);
+		 user.setFaceImage(path);
+		 userService.updateUser(user);
 		
 	
-		return JSONResult.ok();
+		return JSONResult.ok(path);
 	}
 	
 

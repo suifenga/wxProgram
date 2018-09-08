@@ -25,5 +25,12 @@ public interface UserService {
 	 */
 	public Users queryUserIsExist(Users user);
 	
+	/**
+	 * 更新对象
+	 * @param username
+	 * @return
+	 */
+	public void updateUser(Users user);
+	
 	
 }
