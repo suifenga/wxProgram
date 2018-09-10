@@ -19,7 +19,7 @@ Page({
       })
     } else {
       wx.showLoading({
-        title: '正在加载中。。。'
+        title: '正在登录中。。。'
       });
       wx.request({
         url: app.serverUrl + "/login",

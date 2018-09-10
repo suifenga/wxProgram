@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    faceUrl: "../../resource/images/noneface.png",
+    faceImage: "../../resource/images/noneface.png",
     nickname: "昵称",
     fansCounts: 0,
     followCounts: 0,
@@ -103,7 +103,65 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var me = this;
+    wx.showLoading({
+      title: '正在获取用户信息。。。'
+    });
+    wx.request({
+      url: app.serverUrl + "/user/queryByUserId?userId=" + app.userInfo.id,
+      method: "POST",
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data);
+        var status = res.data.status;
+        var userInfo = res.data.data;
+        wx.hideLoading();
+        var faceImage = me.data.faceUrl;
+        if (userInfo.faceImage != null && userInfo.faceImage != '' && userInfo.faceImage!=undefined){
+          faceImage = app.serverUrl +userInfo.faceImage;
+        }
+        me.setData({
+          faceImage: faceImage,
+          fansCounts: userInfo.fansCounts,
+          followCounts: userInfo.followCounts,
+          receiveLikeCounts: userInfo.receiveLikeCounts,
+          nickname: userInfo.nickname
+        })
+      }
+    })
+  },
+
+  uploadVideo:function(e){
+    var me = this
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        console.log(res);
+        var tempDuration = res.duration;
+        var tempHeight = res.height;
+        var tempWidth = res.width;
+        var tempSize = res.size;
+        var tempFilePath = res.tempFilePath;
+        var tempFilePath = res.thumbTempFilePath;
+        if (tempDuration>20){
+          wx.showToast({
+            title: "视频太长了老铁不稳~",
+            icon: 'none',
+            duration: 3000
+          })
+        } else if (tempDuration <5){
+          wx.showToast({
+            title: "视频太短了不到5秒。老铁不稳~",
+            icon: 'none',
+            duration: 3000
+          })
+        } else{
+          //进行上传
+        }
+      }
+    })
   },
 
   /**

@@ -1,6 +1,7 @@
 package com.idig8.controller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.idig8.pojo.Users;
+import com.idig8.pojo.vo.UsersVO;
 import com.idig8.service.UserService;
 import com.idig8.utils.JSONResult;
 import com.idig8.utils.file.FileUtil;
@@ -31,8 +33,6 @@ public class UserController extends BasicController{
 	private String fileSpace;
 	
 	@ApiOperation(value="用户上传头像",notes="用户上传头像的接口")
-	
-	
 	@ApiImplicitParams({
 		@ApiImplicitParam(name="userId",value="用户id",required=true,dataType="String",paramType="query"),
 		@ApiImplicitParam(name="file",value="文件上传",required=true,dataType="String",paramType="query"),
@@ -61,6 +61,22 @@ public class UserController extends BasicController{
 		
 	
 		return JSONResult.ok(path);
+	}
+	
+	@ApiOperation(value="通过用户Id获取用户信息",notes="通过用户Id获取用户信息的接口")
+	@ApiImplicitParam(name="userId",value="用户id",required=true,dataType="String",paramType="query")
+	@PostMapping("/queryByUserId")
+	public JSONResult queryByUserId(String userId) {
+		if (StringUtils.isBlank(userId)) {
+			return JSONResult.errorMsg("用户id不能为空...");
+		}
+		
+		Users user = userService.queryUserId(userId);
+		UsersVO usersVO= new UsersVO();
+		BeanUtils.copyProperties(user, usersVO);
+		
+	
+		return JSONResult.ok(usersVO);
 	}
 	
 
