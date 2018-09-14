@@ -144,7 +144,7 @@ Page({
         var tempWidth = res.width;
         var tempSize = res.size;
         var tempFilePath = res.tempFilePath;
-        var tempFilePath = res.thumbTempFilePath;
+        var thumbTempFilePath = res.thumbTempFilePath;
         if (tempDuration>20){
           wx.showToast({
             title: "视频太长了老铁不稳~",
@@ -158,7 +158,14 @@ Page({
             duration: 3000
           })
         } else{
-          //进行上传
+          wx.navigateTo({
+            url: '../chooseBgm/chooseBgm?tempDuration=' + tempDuration
+              + '&tempHeight=' + tempHeight
+              + '&tempWidth=' + tempWidth
+              + '&tempSize=' + tempSize
+              + '&tempFilePath=' + tempFilePath
+              + '&thumbTempFilePath=' + thumbTempFilePath
+          })
         }
       }
     })
