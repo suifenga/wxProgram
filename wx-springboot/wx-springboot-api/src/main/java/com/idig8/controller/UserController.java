@@ -20,6 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @Api(value="用户接口",tags={"用户的controller"})
@@ -35,10 +36,9 @@ public class UserController extends BasicController{
 	@ApiOperation(value="用户上传头像",notes="用户上传头像的接口")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name="userId",value="用户id",required=true,dataType="String",paramType="query"),
-		@ApiImplicitParam(name="file",value="文件上传",required=true,dataType="String",paramType="query"),
 	})
-	@PostMapping("/uploadFace")
-	public JSONResult uploadFace(String userId,@RequestParam("file") MultipartFile file) {
+	@PostMapping(value="/uploadFace",headers="content-type=multipart/form-data")
+	public JSONResult uploadFace(String userId,@ApiParam(value="图片",required=true) MultipartFile file) {
 		if (StringUtils.isBlank(userId)) {
 			return JSONResult.errorMsg("用户id不能为空...");
 		}

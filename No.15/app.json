@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/chooseBgm/chooseBgm",
     "pages/userLogin/userLogin",
     "pages/mine/mine",
     "pages/userRegister/userRegister"

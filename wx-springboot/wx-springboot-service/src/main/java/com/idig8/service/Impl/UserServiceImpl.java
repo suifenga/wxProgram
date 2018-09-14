@@ -1,4 +1,4 @@
-package com.idig8.service;
+package com.idig8.service.Impl;
 
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.idig8.mapper.UsersMapper;
 import com.idig8.pojo.Users;
+import com.idig8.service.UserService;
 import com.idig8.utils.MD5Utils;
 
 import tk.mybatis.mapper.entity.Example;
