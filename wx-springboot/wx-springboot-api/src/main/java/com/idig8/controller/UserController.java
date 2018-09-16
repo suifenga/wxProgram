@@ -30,7 +30,7 @@ public class UserController extends BasicController{
 	@Autowired
 	private UserService userService;
 	
-	@Value("${server.face.path}")
+	@Value("${server.file.path}")
 	private String fileSpace;
 	
 	@ApiOperation(value="用户上传头像",notes="用户上传头像的接口")

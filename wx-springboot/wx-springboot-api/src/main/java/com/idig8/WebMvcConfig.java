@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	
-	@Value("${server.face.path}")
+	@Value("${server.file.path}")
 	private String fileSpace;
 
 	@Override

@@ -68,7 +68,6 @@ Page({
     var userId = app.userInfo.id;
 
 
-    debugger;
     wx.showLoading({
       title: '请等待...',
     });
@@ -88,7 +87,22 @@ Page({
      name: 'file',
      success:function(res){
       console.log(res);
+       var status = JSON.parse(res.data).status;
+       debugger;
        wx.hideLoading();
+       if (status == 200) {
+         wx.showToast({
+           title: "上传成功~！",
+           icon: 'none',
+           duration: 3000
+         })
+       } else if (status == 500) {
+         wx.showToast({
+           title: res.data.msg,
+           icon: 'none',
+           duration: 3000
+         })
+       }
      }
      
    })
