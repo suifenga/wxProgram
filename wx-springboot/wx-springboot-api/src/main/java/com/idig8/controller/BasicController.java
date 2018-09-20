@@ -21,4 +21,9 @@ public class BasicController {
 	 * 用户session的失效时间
 	 */
 	public static final long USERS_REDIS_SESSION_TL = 1000*60*30;
+	
+	/**
+	 * 每一页分多少
+	 */
+	public static final Integer PAGE_SIZE=1;
 }

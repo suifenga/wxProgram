@@ -19,6 +19,7 @@ import com.idig8.service.VideoService;
 import com.idig8.utils.FetchVideoCover;
 import com.idig8.utils.JSONResult;
 import com.idig8.utils.MergeVideoMp3;
+import com.idig8.utils.PagedResult;
 import com.idig8.utils.enums.VideoStatusEnum;
 import com.idig8.utils.file.FileUtil;
 
@@ -124,6 +125,22 @@ public class VideoController extends BasicController {
 		videosService.saveVideo(videos);
 				 
 		return JSONResult.ok(path);
+		
+	}
+	
+	@PostMapping(value="/showAll")
+	@ApiOperation(value="视频列表", notes="分页的视频列表")
+	@ApiImplicitParam(name="page", value="页码", 
+	dataType="String", paramType="query")
+	public JSONResult upload(
+				Integer page) throws Exception {
+		if(page == null){
+			page = 1;
+		}
+		
+		PagedResult result = videosService.getAllVideos(page, PAGE_SIZE);
+				 
+		return JSONResult.ok(result);
 		
 	}
 }
