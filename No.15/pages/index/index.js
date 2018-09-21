@@ -8,7 +8,6 @@ Page({
     videoList: [],
     screenWidth: 350,
     serverUrl: "",
-    searchContent: ""
   },
 
   onLoad: function (params) {
@@ -18,32 +17,24 @@ Page({
       screenWidth: screenWidth,
     });
 
-    var searchContent = params.search;
-    var isSaveRecord = params.isSaveRecord;
-    if (isSaveRecord == null || isSaveRecord == '' || isSaveRecord == undefined) {
-      isSaveRecord = 0;
-    }
 
-    me.setData({
-      searchContent: searchContent
-    });
 
     // 获取当前的分页数
     var page = me.data.page;
+    me.getAllVideosList(page);
+  },
+
+  getAllVideosList:function(page){
     var me = this;
     var serverUrl = app.serverUrl;
     wx.showLoading({
       title: '请等待，加载中...',
     });
 
-    var searchContent = me.data.searchContent;
 
     wx.request({
-      url: serverUrl + '/video/showAll?page=' + page + "&isSaveRecord=" + isSaveRecord,
+      url: serverUrl + '/video/showAll?page=' + page,
       method: "POST",
-      data: {
-        videoDesc: searchContent
-      },
       success: function (res) {
         wx.hideLoading();
         wx.hideNavigationBarLoading();
@@ -70,7 +61,32 @@ Page({
 
       }
     })
-  }
+  },
+
+  onPullDownRefresh: function (params) {
+    var me = this;
+    wx.showNavigationBarLoading();
+    me.getAllVideosList(1);
+
+  },
+
+  onReachBottom: function (params){
+    var me = this;
+    var currentPage = me.data.page;
+    var totalPage = me.data.totalPage;
+    
+    //判断当前页数和总页数是否相等，如果相同已经无需请求
+    if (currentPage == totalPage){
+      wx.showToast({
+        title: '已经没有视频啦~',
+        icon:"none"
+      })
+      return;
+    }
+    var page = currentPage+1;
+    me.getAllVideosList(page);
+
+}
 
 
 })

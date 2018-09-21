@@ -25,5 +25,5 @@ public class BasicController {
 	/**
 	 * 每一页分多少
 	 */
-	public static final Integer PAGE_SIZE=1;
+	public static final Integer PAGE_SIZE=4;
 }
