@@ -54,6 +54,8 @@ Page({
     },
   upload:function(e){
     var me = this;
+
+    var userInfo = app.getGlobalUserInfo();
     var datasParams = me.data.videoParams;
     var bgmId = e.detail.value.bgmId;
     var desc = e.detail.value.desc;
@@ -65,7 +67,7 @@ Page({
     var tempSize = datasParams.tempSize;
     var tempFilePath = datasParams.tempFilePath;
     var thumbTempFilePath = datasParams.thumbTempFilePath;
-    var userId = app.userInfo.id;
+    var userId = userInfo.id;
 
 
     wx.showLoading({

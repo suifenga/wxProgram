@@ -16,7 +16,7 @@ Page({
    * 用户注销
    */
   logout:function(e){
-    var user = app.userInfo;
+    var user = app.getGlobalUserInfo();
     wx.showLoading({
       title: '正在注销中。。。'
     });
@@ -36,7 +36,8 @@ Page({
             icon: 'none',
             duration: 3000
           })
-          app.userInfo = null;
+          // app.userInfo = null;
+          wx.removeStorageSync("userInfo");
           wx.redirectTo({
             url: '../userRegister/userRegister',
           })
@@ -55,7 +56,8 @@ Page({
    * 头像上传
    */
   uploadFace:function(e){
-    var user = app.userInfo;
+    // var user = app.userInfo;
+    var user = app.getGlobalUserInfo();
     var me = this;
     wx.chooseImage({
       count: 1, // 默认9
@@ -104,11 +106,12 @@ Page({
    */
   onLoad: function (options) {
     var me = this;
+    var userInfo = app.getGlobalUserInfo();
     wx.showLoading({
       title: '正在获取用户信息。。。'
     });
     wx.request({
-      url: app.serverUrl + "/user/queryByUserId?userId=" + app.userInfo.id,
+      url: app.serverUrl + "/user/queryByUserId?userId=" + userInfo.id,
       method: "POST",
       header: {
         'content-type': 'application/json' // 默认值
