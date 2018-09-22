@@ -8,6 +8,7 @@ Page({
     videoList: [],
     screenWidth: 350,
     serverUrl: "",
+    searchValue:""
   },
 
   onLoad: function (params) {
@@ -17,14 +18,24 @@ Page({
       screenWidth: screenWidth,
     });
 
+    var searchValue = params.searchValue;
+    var isSaveRecord = params.isSaveRecord;
+    if (isSaveRecord == null || isSaveRecord == "" || isSaveRecord == undefined){
+      isSaveRecord = 0;
+    }
+
+    me.setData({
+      searchValue: searchValue,
+    });
+
 
 
     // 获取当前的分页数
     var page = me.data.page;
-    me.getAllVideosList(page);
+    me.getAllVideosList(page, isSaveRecord);
   },
 
-  getAllVideosList:function(page){
+  getAllVideosList: function (page, isSaveRecord){
     var me = this;
     var serverUrl = app.serverUrl;
     wx.showLoading({
@@ -33,8 +44,11 @@ Page({
 
 
     wx.request({
-      url: serverUrl + '/video/showAll?page=' + page,
+      url: serverUrl + '/video/showAll?page=' + page + "&isSaveRecord =" + isSaveRecord,
       method: "POST",
+      data:{
+        videoDesc: me.data.searchValue
+      },
       success: function (res) {
         wx.hideLoading();
         wx.hideNavigationBarLoading();
@@ -66,7 +80,7 @@ Page({
   onPullDownRefresh: function (params) {
     var me = this;
     wx.showNavigationBarLoading();
-    me.getAllVideosList(1);
+    me.getAllVideosList(1,0);
 
   },
 
@@ -84,9 +98,19 @@ Page({
       return;
     }
     var page = currentPage+1;
-    me.getAllVideosList(page);
+    me.getAllVideosList(page,0);
 
-}
+},
+  showVideoInfo:function(e){
+    var me = this;
+    var videoList = me.data.videoList;
+    var arrIndex = e.target.dataset.arrindex;
+    var videoInfo = JSON.stringify(videoList[arrIndex]);
+    wx.redirectTo({
+      url: '../videoInfo/videoInfo?videoInfo=' + videoInfo,
+    })
+
+  }
 
 
 })

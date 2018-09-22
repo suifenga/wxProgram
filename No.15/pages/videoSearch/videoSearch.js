@@ -1,4 +1,5 @@
 var WxSearch = require('../../wxSearchView/wxSearchView.js');
+const app = getApp()
 Page({
 
   /**
@@ -10,15 +11,28 @@ Page({
 
   onLoad: function () {
 
+
     // 2 搜索栏初始化
     var that = this;
-    WxSearch.init(
-      that,  // 本页面一个引用
-      ['杭州', '嘉兴', "海宁", "桐乡", '宁波', '金华'], // 热点搜索推荐，[]表示不使用
-      ['湖北', '湖南', '北京', "南京"],// 搜索匹配，[]表示不使用
-      that.mySearchFunction, // 提供一个搜索回调函数
-      that.myGobackFunction //提供一个返回回调函数
-    );
+    wx.request({
+      url: app.serverUrl +"/video/hot",
+      method: "POST",
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var searchHot = res.data.data;
+        WxSearch.init(
+          that,  // 本页面一个引用
+          searchHot, // 热点搜索推荐，[]表示不使用
+          searchHot,// 搜索匹配，[]表示不使用
+          that.mySearchFunction, // 提供一个搜索回调函数
+          that.myGobackFunction //提供一个返回回调函数
+        );
+      }
+    })
+    
+  
 
   },
 
@@ -34,7 +48,7 @@ Page({
     // do your job here
     // 示例：跳转
     wx.redirectTo({
-      url: '../index/index?searchValue=' + value
+      url: '../index/index?isSaveRecord=1&searchValue=' + value
     })
   },
 
@@ -43,7 +57,7 @@ Page({
     // do your job here
     // 示例：返回
     wx.redirectTo({
-      url: '../index/index?searchValue=返回'
+      url: '../index/index'
     })
   },
 

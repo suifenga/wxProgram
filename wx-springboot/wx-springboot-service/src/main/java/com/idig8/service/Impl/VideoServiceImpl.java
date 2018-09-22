@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
+import com.idig8.mapper.SearchRecordsMapper;
 import com.idig8.mapper.VideosMapper;
 import com.idig8.mapper.VideosUsersMapper;
+import com.idig8.pojo.SearchRecords;
 import com.idig8.pojo.Videos;
 import com.idig8.pojo.vo.VideosVO;
 import com.idig8.service.VideoService;
@@ -26,6 +28,9 @@ public class VideoServiceImpl implements  VideoService {
 	
 	@Autowired
 	private VideosUsersMapper videosUsersMapper;
+	
+	@Autowired
+	private SearchRecordsMapper searchRecordsMapper;
 	
 	@Autowired
 	private Sid sid;
@@ -42,12 +47,20 @@ public class VideoServiceImpl implements  VideoService {
 	}
 
 	@Override
-	@Transactional(propagation =Propagation.SUPPORTS)
-	public PagedResult getAllVideos(Integer page, Integer pageSize) {
+	@Transactional(propagation =Propagation.REQUIRED)
+	public PagedResult getAllVideos(Videos video,Integer isSaveRecord,Integer page, Integer pageSize) {
+		
+		String desc = video.getVideoDesc();
+		if(isSaveRecord!=null && isSaveRecord ==1){
+			SearchRecords record = new SearchRecords();
+			String recordId = sid.nextShort();
+			record.setId(recordId);
+			record.setContent(desc);
+			searchRecordsMapper.insert(record);
+		}
 		
 		PageHelper.startPage(page,pageSize);
-		
-		List<VideosVO> list = videosUsersMapper.queryAllVideos();
+		List<VideosVO> list = videosUsersMapper.queryAllVideos(desc);
 		PageInfo<VideosVO> pageList =new PageInfo<>(list);
 		
 		PagedResult result = new PagedResult();
@@ -57,5 +70,12 @@ public class VideoServiceImpl implements  VideoService {
 		result.setRecords(pageList.getTotal());
 		
 		return result;
+	}
+
+	@Transactional(propagation =Propagation.SUPPORTS)
+	@Override
+	public List<String> gethostList() {
+		
+		return searchRecordsMapper.gethotList();
 	}
 }

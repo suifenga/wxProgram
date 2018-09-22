@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -130,17 +131,21 @@ public class VideoController extends BasicController {
 	
 	@PostMapping(value="/showAll")
 	@ApiOperation(value="视频列表", notes="分页的视频列表")
-	@ApiImplicitParam(name="page", value="页码", 
-	dataType="String", paramType="query")
-	public JSONResult upload(
-				Integer page) throws Exception {
+	public JSONResult upload(@RequestBody Videos video,Integer isSaveRecord,
+			Integer page) throws Exception {
 		if(page == null){
 			page = 1;
 		}
-		
-		PagedResult result = videosService.getAllVideos(page, PAGE_SIZE);
-				 
+		PagedResult result = videosService.getAllVideos(video,isSaveRecord,page, PAGE_SIZE);	 
 		return JSONResult.ok(result);
+		
+	}
+	
+	@PostMapping(value="/hot")
+	@ApiOperation(value="热搜词列表", notes="热搜词列表")
+	public JSONResult upload() throws Exception {
+ 
+		return JSONResult.ok(videosService.gethostList());
 		
 	}
 }
