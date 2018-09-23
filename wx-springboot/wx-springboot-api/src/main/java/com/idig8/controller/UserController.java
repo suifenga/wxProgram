@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.idig8.pojo.Users;
+import com.idig8.pojo.vo.PublisherVideo;
 import com.idig8.pojo.vo.UsersVO;
 import com.idig8.service.UserService;
 import com.idig8.utils.JSONResult;
@@ -77,6 +78,29 @@ public class UserController extends BasicController{
 		
 	
 		return JSONResult.ok(usersVO);
+	}
+	
+	@PostMapping("/queryPublisher")
+	public JSONResult queryPublisher(String loginUserId, String videoId, 
+			String publishUserId) throws Exception {
+		
+		if (StringUtils.isBlank(publishUserId)) {
+			return JSONResult.errorMsg("");
+		}
+		
+		// 1. 查询视频发布者的信息
+		Users userInfo = userService.queryUserInfo(publishUserId);
+		UsersVO publisher = new UsersVO();
+		BeanUtils.copyProperties(userInfo, publisher);
+		
+		// 2. 查询当前登录者和视频的点赞关系
+		boolean userLikeVideo = userService.isUserLikeVideo(loginUserId, videoId);
+		
+		PublisherVideo bean = new PublisherVideo();
+		bean.setPublisher(publisher);	
+		bean.setUserLikeVideo(userLikeVideo);
+		
+		return JSONResult.ok(bean);
 	}
 	
 

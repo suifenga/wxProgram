@@ -30,6 +30,11 @@ public interface VideoService {
 	 * @return
 	 */
 	public List<String> gethostList();
+	
+	public void userLikeVideo(String userId,String videoId,String videoCreaterId);
+	
+	public void userUnLikeVideo(String userId,String videoId,String videoCreaterId);
+	
 }
 	
 	

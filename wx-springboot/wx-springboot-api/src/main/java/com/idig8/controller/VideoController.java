@@ -141,8 +141,23 @@ public class VideoController extends BasicController {
 		
 	}
 	
-	@PostMapping(value="/hot")
+	@PostMapping(value="/userLike")
 	@ApiOperation(value="热搜词列表", notes="热搜词列表")
+	public JSONResult userLike(String userId,String videoId,String videoCreaterId) throws Exception {
+		
+		videosService.userLikeVideo(userId, videoId, videoCreaterId);
+		return JSONResult.ok();
+		
+	}
+	
+	@PostMapping(value="/userUnLike")
+	public JSONResult userUnLike(String userId,String videoId,String videoCreaterId) throws Exception {
+		videosService.userUnLikeVideo(userId, videoId, videoCreaterId);
+		return JSONResult.ok();
+		
+	}
+	
+	@PostMapping(value="/hot")
 	public JSONResult upload() throws Exception {
  
 		return JSONResult.ok(videosService.gethostList());

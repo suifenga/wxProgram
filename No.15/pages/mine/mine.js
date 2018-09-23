@@ -105,14 +105,22 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function(params) {
     var me = this;
+
     var userInfo = app.getGlobalUserInfo();
+    var publisherId = params.publisherId;
+    var userId = userInfo.id;
+    if (publisherId != null && publisherId != '' && publisherId!=undefined){
+      userId = publisherId;
+    }
+
+  
     wx.showLoading({
       title: '正在获取用户信息。。。'
     });
     wx.request({
-      url: app.serverUrl + "/user/queryByUserId?userId=" + userInfo.id,
+      url: app.serverUrl + "/user/queryByUserId?userId=" + userId,
       method: "POST",
       header: {
         'content-type': 'application/json', // 默认值

@@ -7,7 +7,10 @@ Page({
     videoContext:"",
     videoInfo:{},
     videId:'',
-    src:''
+    src:'',
+    userLikeVideo:false,
+    serverUrl:'',
+    publisher:[]
   },
   
 
@@ -32,6 +35,31 @@ Page({
       videoInfo: videoInfo,
       cover: cover
     })
+
+    var serverUrl = app.serverUrl;
+    var user = app.getGlobalUserInfo();
+    var loginUserId = "";
+    if (user != null && user != undefined && user != '') {
+      loginUserId = user.id;
+    }
+    wx.request({
+      url: serverUrl + '/user/queryPublisher?loginUserId=' + loginUserId + "&videoId=" + videoInfo.id + "&publishUserId=" + videoInfo.userId,
+      method: 'POST',
+      success: function (res) {
+        console.log(res.data);
+
+        var publisher = res.data.data.publisher;
+        var userLikeVideo = res.data.data.userLikeVideo;
+
+        me.setData({
+          serverUrl: serverUrl,
+          publisher: publisher,
+          userLikeVideo: userLikeVideo
+        });
+      }
+    })
+
+
 
 
   },
@@ -85,4 +113,65 @@ Page({
     
    
   },
+
+  likeVideoOrNot: function () {
+    var me = this;
+    var userInfo = app.getGlobalUserInfo();
+
+
+    var videoInfoStr = JSON.stringify(me.data.videoInfo);
+    var realUrl = '../videoInfo/videoInfo#videoInfo@' + videoInfoStr;
+    if (userInfo.id == '' || userInfo.id == undefined) {
+      wx.navigateTo({
+        url: '../userLogin/userLogin?realUrl=' + realUrl,
+      })
+    } else {
+      var videoInfo = me.data.videoInfo;
+      var userLikeVideo = me.data.userLikeVideo;
+      var url = "/video/userLike?userId=" + userInfo.id + "&videoId=" + videoInfo.id + "&videoCreaterId=" + userLikeVideo.userId;
+
+      if (userLikeVideo){
+        var url = "/video/userUnLike?userId=" + userInfo.id + "&videoId=" + videoInfo.id + "&videoCreaterId=" + userLikeVideo.userId;
+      }
+      wx.showLoading({
+        title: '....',
+      })
+      wx.request({
+        url: app.serverUrl + url,
+        method: "POST",
+        header: {
+          'content-type': 'application/json', // 默认值
+          'headerUserId': userInfo.id,
+          'headerUserToken': userInfo.userToken
+        },
+        success: function (res) {
+          wx.hideLoading();
+          me.setData({
+            userLikeVideo: !userLikeVideo,
+          })
+        }
+      })
+
+    }
+
+
+  },
+  showPublisher:function(){
+    var me = this;
+    var userInfo = app.getGlobalUserInfo();
+
+
+    var videoInfo = me.data.videoInfo;
+    var realUrl = '../mine/mine#publisherId@' + videoInfo.userId;
+    if (userInfo.id == '' || userInfo.id == undefined) {
+      wx.navigateTo({
+        url: '../userLogin/userLogin?realUrl=' + realUrl,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../mine/mine?publisherId=' + videoInfo.userId,
+      })
+
+    }
+  }
 })

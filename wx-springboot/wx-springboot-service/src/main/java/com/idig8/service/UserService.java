@@ -40,4 +40,14 @@ public interface UserService {
 	 */
 	public Users queryUserId(String userId);
 	
+	/**
+	 * 查询用户信息
+	 */
+	public Users queryUserInfo(String userId);
+	
+	/**
+	 * 查询用户是否喜欢点赞视频
+	 */
+	public boolean isUserLikeVideo(String userId, String videoId);
+	
 }
