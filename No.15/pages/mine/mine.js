@@ -16,18 +16,18 @@ Page({
   /**
    * 用户注销
    */
-  logout:function(e){
+  logout: function(e) {
     var user = app.getGlobalUserInfo();
     wx.showLoading({
       title: '正在注销中。。。'
     });
     wx.request({
-      url: app.serverUrl + "/logout?userId="+user.id,
+      url: app.serverUrl + "/logout?userId=" + user.id,
       method: "POST",
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
         var status = res.data.status;
         wx.hideLoading();
@@ -56,7 +56,7 @@ Page({
   /**
    * 头像上传
    */
-  uploadFace:function(e){
+  uploadFace: function(e) {
     // var user = app.userInfo;
     var user = app.getGlobalUserInfo();
     var me = this;
@@ -64,48 +64,48 @@ Page({
       count: 1, // 默认9
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
+      success: function(res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
-        if (tempFilePaths.length>0){
+        if (tempFilePaths.length > 0) {
           console.log(tempFilePaths[0]);
-              wx.uploadFile({
-                url: app.serverUrl + "/user/uploadFace?userId=" + user.id, //仅为示例，非真实的接口地址
-                filePath: tempFilePaths[0],
-                name: 'file',
-                success: function (res) {
-                  var data = JSON.parse(res.data);
-                  console.log(data);
-                   wx.hideLoading();
-                  if (data.status == 200) {
-                    wx.showToast({
-                      title: "用户上传成功~！",
-                      icon: 'none',
-                      duration: 3000
-                    })
-                    me.setData({
-                      faceUrl: app.serverUrl+data.data
-                    })
-                  
+          wx.uploadFile({
+            url: app.serverUrl + "/user/uploadFace?userId=" + user.id, //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[0],
+            name: 'file',
+            success: function(res) {
+              var data = JSON.parse(res.data);
+              console.log(data);
+              wx.hideLoading();
+              if (data.status == 200) {
+                wx.showToast({
+                  title: "用户上传成功~！",
+                  icon: 'none',
+                  duration: 3000
+                })
+                me.setData({
+                  faceUrl: app.serverUrl + data.data
+                })
 
-                  } else if (data.status == 500) {
-                    wx.showToast({
-                      title: data.msg,
-                      icon: 'none',
-                      duration: 3000
-                    })
-                  }
-                }
-              })
+
+              } else if (data.status == 500) {
+                wx.showToast({
+                  title: data.msg,
+                  icon: 'none',
+                  duration: 3000
+                })
+              }
+            }
+          })
         }
-       
+
       }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var me = this;
     var userInfo = app.getGlobalUserInfo();
     wx.showLoading({
@@ -115,78 +115,97 @@ Page({
       url: app.serverUrl + "/user/queryByUserId?userId=" + userInfo.id,
       method: "POST",
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/json', // 默认值
+        'headerUserId': userInfo.id,
+        'headerUserToken': userInfo.userToken
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.data);
         var status = res.data.status;
-        var userInfo = res.data.data;
-        wx.hideLoading();
-        var faceImage = me.data.faceUrl;
-        if (userInfo.faceImage != null && userInfo.faceImage != '' && userInfo.faceImage!=undefined){
-          faceImage = app.serverUrl +userInfo.faceImage;
+
+        if (status == 200) {
+          var userInfo = res.data.data;
+          wx.hideLoading();
+          var faceImage = me.data.faceUrl;
+          if (userInfo.faceImage != null && userInfo.faceImage != '' && userInfo.faceImage != undefined) {
+            faceImage = app.serverUrl + userInfo.faceImage;
+          }
+          me.setData({
+            faceImage: faceImage,
+            fansCounts: userInfo.fansCounts,
+            followCounts: userInfo.followCounts,
+            receiveLikeCounts: userInfo.receiveLikeCounts,
+            nickname: userInfo.nickname
+          })
+        } else if (status == 502){
+          wx.showToast({
+            title: res.data.msg,
+            duration:3000,
+            icon:'none',
+            complete:function(){
+              wx.removeStorageSync("userInfo");
+
+              wx.navigateTo({
+                url: '../userLogin/userLogin',
+              })
+            }
+          })
+          
         }
-        me.setData({
-          faceImage: faceImage,
-          fansCounts: userInfo.fansCounts,
-          followCounts: userInfo.followCounts,
-          receiveLikeCounts: userInfo.receiveLikeCounts,
-          nickname: userInfo.nickname
-        })
       }
     })
   },
 
-  uploadVideo:function(e){
+  uploadVideo: function(e) {
     videoUtils.uploadVideo();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   }
 })

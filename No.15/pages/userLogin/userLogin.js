@@ -2,14 +2,22 @@ const app = getApp()
 
 Page({
   data: {
-
+    realUrl:''
   },
-
+  onLoad:function(params){
+    var realUrl = params.realUrl;
+    var me = this;
+    realUrl = realUrl.replace(/#/g,"?");
+    realUrl = realUrl.replace(/@/g, "=");
+    me.setData({
+      realUrl: realUrl
+    })
+  },
   doLogin: function (e) {
     var formObject = e.detail.value;
     var username = formObject.username;
     var password = formObject.password;
-
+    var me = this;
     // 简单验证
     if (username.length == 0 || password.length == 0) {
       wx.showToast({
@@ -33,6 +41,7 @@ Page({
         },
         success: function (res) {
           console.log(res.data);
+          
           var status = res.data.status;
           wx.hideLoading();
           if (status == 200) {
@@ -43,9 +52,21 @@ Page({
             })
             // app.userInfo = res.data.data;
             app.setGlobalUserInfo(res.data.data);
-            wx.redirectTo({
-              url: '../mine/mine',
-            })
+
+            var realUrl = me.data.realUrl;
+
+            if (realUrl != null && realUrl != '' && realUrl != undefined){
+              wx.redirectTo({
+                url: realUrl,
+              })
+            }else{
+              wx.redirectTo({
+                url: '../mine/mine',
+              })
+            }
+
+
+           
 
           } else if (status == 500) {
             wx.showToast({

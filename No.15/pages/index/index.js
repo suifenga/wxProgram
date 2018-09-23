@@ -44,7 +44,7 @@ Page({
 
 
     wx.request({
-      url: serverUrl + '/video/showAll?page=' + page + "&isSaveRecord =" + isSaveRecord,
+      url: serverUrl + '/video/showAll?page=' + page + "&isSaveRecord=" + isSaveRecord,
       method: "POST",
       data:{
         videoDesc: me.data.searchValue
