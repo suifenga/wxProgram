@@ -35,6 +35,10 @@ public interface VideoService {
 	
 	public void userUnLikeVideo(String userId,String videoId,String videoCreaterId);
 	
+	public PagedResult queryMyLikeVideos(String userId,Integer page,Integer pageSize);
+	
+	public PagedResult queryMyFollowVideos(String userId,Integer page,Integer pageSize);
+	
 }
 	
 	

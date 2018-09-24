@@ -131,7 +131,7 @@ public class VideoController extends BasicController {
 	
 	@PostMapping(value="/showAll")
 	@ApiOperation(value="视频列表", notes="分页的视频列表")
-	public JSONResult upload(@RequestBody Videos video,Integer isSaveRecord,
+	public JSONResult showAll(@RequestBody Videos video,Integer isSaveRecord,
 			Integer page) throws Exception {
 		if(page == null){
 			page = 1;
@@ -163,4 +163,48 @@ public class VideoController extends BasicController {
 		return JSONResult.ok(videosService.gethostList());
 		
 	}
+	
+	@PostMapping(value="/showMyLike")
+	public JSONResult showMyLike(String userId,Integer page,Integer pageSize) throws Exception {
+		if(StringUtils.isBlank(userId)){
+			return JSONResult.ok();
+		}
+		
+		if(page == null){
+			page = 1;
+		}
+		
+		if(pageSize == null){
+			pageSize = PAGE_SIZE;
+		}
+		
+		PagedResult videoList = videosService.queryMyLikeVideos(userId,page,pageSize);
+		
+		
+		return JSONResult.ok(videoList);
+		
+	}
+	
+	@PostMapping(value="/showMyFollow")
+	public JSONResult showMyFollow(String userId,Integer page,Integer pageSize) throws Exception {
+		if(StringUtils.isBlank(userId)){
+			return JSONResult.ok();
+		}
+		
+		if(page == null){
+			page = 1;
+		}
+		
+		if(pageSize == null){
+			pageSize = PAGE_SIZE;
+		}
+		
+		PagedResult videoList = videosService.queryMyFollowVideos(userId,page,pageSize);
+		
+		
+		return JSONResult.ok(videoList);
+		
+	}
+	
+	
 }

@@ -61,6 +61,7 @@ public class VideoServiceImpl implements VideoService {
 	public PagedResult getAllVideos(Videos video, Integer isSaveRecord, Integer page, Integer pageSize) {
 
 		String desc = video.getVideoDesc();
+		String userId = video.getUserId();
 		if (isSaveRecord != null && isSaveRecord == 1) {
 			SearchRecords record = new SearchRecords();
 			String recordId = sid.nextShort();
@@ -70,7 +71,7 @@ public class VideoServiceImpl implements VideoService {
 		}
 
 		PageHelper.startPage(page, pageSize);
-		List<VideosVO> list = videosUsersMapper.queryAllVideos(desc);
+		List<VideosVO> list = videosUsersMapper.queryAllVideos(desc,userId);
 		PageInfo<VideosVO> pageList = new PageInfo<>(list);
 
 		PagedResult result = new PagedResult();
@@ -121,4 +122,36 @@ public class VideoServiceImpl implements VideoService {
 		// 3. 用户喜欢的累减
 		usersMapper.reduceReceiveLikeCount(userId);
 	}
+
+	@Override
+	public PagedResult queryMyLikeVideos(String userId, Integer page, Integer pageSize) {
+		PageHelper.startPage(page,pageSize);
+		List<VideosVO> list = videosUsersMapper.queryMyLikeVideos(userId);
+		
+		PageInfo<VideosVO> pageList = new PageInfo<>(list);
+		PagedResult pagedResult = new PagedResult();
+		pagedResult.setTotal(pageList.getPages());
+		pagedResult.setRows(list);
+		pagedResult.setPage(page);
+		pagedResult.setRecords(pageList.getTotal());
+		
+		return pagedResult;
+	}
+
+	@Override
+	public PagedResult queryMyFollowVideos(String userId, Integer page, Integer pageSize) {
+		PageHelper.startPage(page,pageSize);
+		List<VideosVO> list = videosUsersMapper.queryMyFollowVideos(userId);
+		
+		PageInfo<VideosVO> pageList = new PageInfo<>(list);
+		PagedResult pagedResult = new PagedResult();
+		pagedResult.setTotal(pageList.getPages());
+		pagedResult.setRows(list);
+		pagedResult.setPage(page);
+		pagedResult.setRecords(pageList.getTotal());
+		
+		return pagedResult;
+	}
+	
+	
 }
