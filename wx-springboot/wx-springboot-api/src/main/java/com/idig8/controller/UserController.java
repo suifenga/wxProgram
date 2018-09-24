@@ -67,7 +67,7 @@ public class UserController extends BasicController{
 	@ApiOperation(value="通过用户Id获取用户信息",notes="通过用户Id获取用户信息的接口")
 	@ApiImplicitParam(name="userId",value="用户id",required=true,dataType="String",paramType="query")
 	@PostMapping("/queryByUserId")
-	public JSONResult queryByUserId(String userId) {
+	public JSONResult queryByUserId(String userId, String fanId) {
 		if (StringUtils.isBlank(userId)) {
 			return JSONResult.errorMsg("用户id不能为空...");
 		}
@@ -76,7 +76,7 @@ public class UserController extends BasicController{
 		UsersVO usersVO= new UsersVO();
 		BeanUtils.copyProperties(user, usersVO);
 		
-	
+		usersVO.setFollow(userService.queryIfFollow(userId, fanId));
 		return JSONResult.ok(usersVO);
 	}
 	
@@ -101,6 +101,31 @@ public class UserController extends BasicController{
 		bean.setUserLikeVideo(userLikeVideo);
 		
 		return JSONResult.ok(bean);
+	}
+	
+	
+	@PostMapping("/beyourfans")
+	public JSONResult beyourfans(String userId, String fanId) throws Exception {
+		
+		if (StringUtils.isBlank(userId) || StringUtils.isBlank(fanId)) {
+			return JSONResult.errorMsg("");
+		}
+		
+		userService.saveUserFanRelation(userId, fanId);
+		
+		return JSONResult.ok("关注成功...");
+	}
+	
+	@PostMapping("/dontbeyourfans")
+	public JSONResult dontbeyourfans(String userId, String fanId) throws Exception {
+		
+		if (StringUtils.isBlank(userId) || StringUtils.isBlank(fanId)) {
+			return JSONResult.errorMsg("");
+		}
+		
+		userService.deleteUserFanRelation(userId, fanId);
+		
+		return JSONResult.ok("取消关注成功...");
 	}
 	
 

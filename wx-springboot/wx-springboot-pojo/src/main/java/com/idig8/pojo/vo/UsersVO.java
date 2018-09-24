@@ -47,6 +47,9 @@ public class UsersVO {
      */
 
     private Integer receiveLikeCounts;
+    
+    
+	private boolean isFollow;
 
     /**
      * @return id
@@ -194,6 +197,14 @@ public class UsersVO {
 
 	public void setUserToken(String userToken) {
 		this.userToken = userToken;
+	}
+
+	public boolean isFollow() {
+		return isFollow;
+	}
+
+	public void setFollow(boolean isFollow) {
+		this.isFollow = isFollow;
 	}
     
     
