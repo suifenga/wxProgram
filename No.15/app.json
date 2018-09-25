@@ -4,7 +4,7 @@
     "pages/videoInfo/videoInfo",
     "pages/video/video",
     "pages/videoSearch/videoSearch",
-    
+    "pages/report/report",
     "pages/userLogin/userLogin",
     "pages/mine/mine",
     "pages/userRegister/userRegister",

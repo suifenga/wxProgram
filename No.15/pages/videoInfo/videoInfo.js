@@ -173,5 +173,37 @@ Page({
       })
 
     }
+  },
+  shareMe:function(){
+    var me = this;
+    var user = app.getGlobalUserInfo();
+    wx.showActionSheet({
+      itemList: ["下载到本地","举报用户","分享到好友"],
+      success:function(res){
+        if (res.tapIndex==0){
+
+        } else if (res.tapIndex==1){
+          // 举报
+          var videoInfo = JSON.stringify(me.data.videoInfo);
+          var realUrl = '../videoInfo/videoInfo#videoInfo@' + videoInfo;
+
+          if (user == null || user == undefined || user == '') {
+            wx.navigateTo({
+              url: '../userLogin/userLogin?realUrl=' + realUrl,
+            })
+          } else {
+            var publishUserId = me.data.videoInfo.userId;
+            var videoId = me.data.videoInfo.id;
+            var currentUserId = user.id;
+            wx.navigateTo({
+              url: '../report/report?videoId=' + videoId + "&publishUserId=" + publishUserId
+            })
+          }
+
+        } else{
+
+        }
+      }
+    })
   }
 })

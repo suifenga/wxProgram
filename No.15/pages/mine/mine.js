@@ -492,6 +492,7 @@ Page({
       this.getMyFollowList(page);
     }
 
-  }
+  },
+  
 
 })

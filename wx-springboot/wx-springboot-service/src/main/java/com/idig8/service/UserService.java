@@ -1,6 +1,7 @@
 package com.idig8.service;
 
 import com.idig8.pojo.Users;
+import com.idig8.pojo.UsersReport;
 
 public interface UserService {
 
@@ -64,6 +65,11 @@ public interface UserService {
 	 * @Description: 查询用户是否关注
 	 */
 	public boolean queryIfFollow(String userId, String fanId);
+	
+	/**
+	 * @Description: 举报用户
+	 */
+	public void reportUser(UsersReport userReport);
 	
 	
 }

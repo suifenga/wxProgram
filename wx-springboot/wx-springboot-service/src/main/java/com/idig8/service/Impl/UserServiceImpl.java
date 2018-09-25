@@ -1,5 +1,6 @@
 package com.idig8.service.Impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.idig8.mapper.UsersFansMapper;
 import com.idig8.mapper.UsersLikeVideosMapper;
 import com.idig8.mapper.UsersMapper;
+import com.idig8.mapper.UsersReportMapper;
 import com.idig8.pojo.Users;
 import com.idig8.pojo.UsersFans;
 import com.idig8.pojo.UsersLikeVideos;
+import com.idig8.pojo.UsersReport;
 import com.idig8.service.UserService;
 import com.idig8.utils.MD5Utils;
 
@@ -38,6 +41,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UsersFansMapper usersFansMapper;
+	
+	@Autowired
+	private UsersReportMapper usersReportMapper;
 	
 	@Transactional(propagation =Propagation.SUPPORTS)
 	@Override
@@ -177,6 +183,17 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return false;
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	@Override
+	public void reportUser(UsersReport userReport) {
+		
+		String urId = sid.nextShort();
+		userReport.setId(urId);
+		userReport.setCreateDate(new Date());
+		
+		usersReportMapper.insert(userReport);
 	}
 
 }
