@@ -181,6 +181,27 @@ Page({
       itemList: ["下载到本地","举报用户","分享到好友"],
       success:function(res){
         if (res.tapIndex==0){
+          // 下载
+          wx.showLoading({
+            title: '下载中...',
+          })
+          wx.downloadFile({
+            url: app.serverUrl + me.data.videoInfo.videoPath,
+            success: function (res) {
+              // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+              if (res.statusCode === 200) {
+                console.log(res.tempFilePath);
+
+                wx.saveVideoToPhotosAlbum({
+                  filePath: res.tempFilePath,
+                  success: function (res) {
+                    console.log(res.errMsg)
+                    wx.hideLoading();
+                  }
+                })
+              }
+            }
+          })
 
         } else if (res.tapIndex==1){
           // 举报
@@ -201,9 +222,20 @@ Page({
           }
 
         } else{
-
+         
         }
       }
     })
-  }
+  },
+  onShareAppMessage: function (res) {
+
+    var me = this;
+    var videoInfo = me.data.videoInfo;
+
+    return {
+      title: '短视频内容分析',
+      path: "pages/videoinfo/videoinfo?videoInfo=" + JSON.stringify(videoInfo),
+      imageUrl: "https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=18090718"
+    }
+  },
 })
