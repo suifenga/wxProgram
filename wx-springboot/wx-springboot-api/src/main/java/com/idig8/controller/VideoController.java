@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.UUID;
 
+import com.idig8.pojo.Comments;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -204,6 +205,38 @@ public class VideoController extends BasicController {
 		
 		return JSONResult.ok(videoList);
 		
+	}
+
+	@PostMapping("/saveComment")
+	public JSONResult saveComment(@RequestBody Comments comment,
+									   String fatherCommentId, String toUserId) throws Exception {
+
+		comment.setFatherCommentId(fatherCommentId);
+		comment.setToUserId(toUserId);
+
+		videosService.saveComment(comment);
+		return JSONResult.ok();
+	}
+
+	@PostMapping("/getVideoComments")
+	public JSONResult getVideoComments(String videoId, Integer page, Integer pageSize) throws Exception {
+
+		if (StringUtils.isBlank(videoId)) {
+			return JSONResult.ok();
+		}
+
+		// 分页查询视频列表，时间顺序倒序排序
+		if (page == null) {
+			page = 1;
+		}
+
+		if (pageSize == null) {
+			pageSize = 10;
+		}
+
+		PagedResult list = videosService.getAllComments(videoId, page, pageSize);
+
+		return JSONResult.ok(list);
 	}
 	
 	

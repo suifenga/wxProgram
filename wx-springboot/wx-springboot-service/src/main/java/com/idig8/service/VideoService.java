@@ -2,6 +2,7 @@ package com.idig8.service;
 
 import java.util.List;
 
+import com.idig8.pojo.Comments;
 import com.idig8.pojo.Videos;
 import com.idig8.utils.PagedResult;
 
@@ -38,6 +39,16 @@ public interface VideoService {
 	public PagedResult queryMyLikeVideos(String userId,Integer page,Integer pageSize);
 	
 	public PagedResult queryMyFollowVideos(String userId,Integer page,Integer pageSize);
+
+	/**
+	 * @Description: 用户留言
+	 */
+	public void saveComment(Comments comment);
+
+	/**
+	 * @Description: 留言分页
+	 */
+	public PagedResult getAllComments(String videoId, Integer page, Integer pageSize);
 	
 }
 	
